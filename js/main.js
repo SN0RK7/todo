@@ -10,8 +10,10 @@ const todoItems = document.getElementsByClassName("todo-item-js"); //Масси�
 const toggleAll = document.querySelector(".toggleAll-js"); //Кнопка toggleAll //
 let value_toggleAll = JSON.parse(localStorage.getItem("toggleAll")); //Значение toggle (true or false) //
 toggleAll.checked = value_toggleAll;
+const zxc = document.querySelector(".zxc")
 
 const addItem = (description) => {
+
   //Создание задачи//
   todo.innerHTML += createTemplate(
     {
@@ -109,15 +111,24 @@ deskTaskInput.addEventListener("keydown", function (event) {
   }
 });
 
+
+zxc.addEventListener("click", () => {
+  console.log(deskTaskInput.value)
+  addItem(deskTaskInput.value);
+  checkToggleAll();
+  checkFooter();
+  taskCounter();
+
+});
 //Потеря фокуса на инпуте //
-deskTaskInput.onblur = function (e) {
-  if (deskTaskInput.value != 0) {
-    addItem(e.target.value);
-    checkToggleAll();
-    checkFooter();
-    taskCounter();
-  }
-};
+// deskTaskInput.onblur = function (e) {
+//   if (deskTaskInput.value != 0) {
+//     addItem(e.target.value);
+//     checkToggleAll();
+//     checkFooter();
+//     taskCounter();
+//   }
+// };
 
 // Удаление задачи //
 const deleteTask = (i) => {
@@ -163,6 +174,10 @@ toggleAll.addEventListener("click", (e) => {
   taskCounter();
   updateLocal();
 });
+
+
+
+
 //Фильтр кнопок All,active,completed //
 const filter_btn = document.querySelector(".buttons");
 filter_btn.addEventListener("click", (event) => {
